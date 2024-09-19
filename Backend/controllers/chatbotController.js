@@ -76,3 +76,13 @@ exports.generateTicket = async (req, res) => {
     res.status(500).json({ message: 'Error generating ticket', error });
   }
 };
+// Ensure required directories exist
+const ensureDirectoriesExist = () => {
+    const ticketsDir = path.join(__dirname, 'tickets');
+    if (!fs.existsSync(ticketsDir)) {
+        fs.mkdirSync(ticketsDir, { recursive: true });
+    }
+};
+
+// Call the function to ensure directories exist
+ensureDirectoriesExist();
